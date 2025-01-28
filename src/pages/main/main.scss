@@ -1,204 +1,156 @@
+// Variables
+$primary-color: #ffffff;
+$accent-color: #000000;
+$text-color: #111111;
+$gray-color: #666666;
 
-$beige: #F8F5F0;
-$gold: #C5A482;
-$dark: #3A2E26;
-
-.container {
-  background: $beige;
+// Base styles
+.main-page {
+  background: $primary-color;
+  color: $accent-color;
   min-height: 100vh;
-  font-family: 'Literata', serif; // Используем Literata как основной шрифт
-  color: $dark;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-
-  &-content {
-    text-align: center;
-    z-index: 2;
-
-    .gradient-title-container {
-      display: inline-block;
-      font-size: clamp(9rem, 26vw, 15rem);
-    }
-
-    .gradient-letter {
-      font-family:"Cherry Bomb One", serif;
-      display: inline-block;
-      background: linear-gradient(30deg, $dark 10%, $gold);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-    }
-
-    .subtitle {
-      font-size: 1.5rem;
-      color: rgba($dark, 0.8);
-      letter-spacing: 0.5px;
-      margin-bottom: 1rem;
-    }
-
-    .scroll-down-indicator {
-      display: inline-block;
-      font-size: 2rem;
-      color: rgba($dark, 0.8);
-      animation: bounce 1.5s infinite ease-in-out;
-
-      span {
-        display: block;
-      }
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-20px);
-      }
-      60% {
-        transform: translateY(-10px);
-      }
-    }
-  }
-
-  .scrolling-text {
-    position: absolute;
-    bottom: 20%;
-    white-space: nowrap;
-    font-size: 1.2rem;
-    color: rgba($dark, 0.4);
+// Header
+.header {
+  margin-bottom: 4rem;
+  
+  .logo {
+    font-size: 1.1rem;
     font-weight: 500;
-    text-transform: uppercase;
-    width: 100%;
+    letter-spacing: -0.5px;
+  }
+}
 
-    span {
-      display: inline-block;
+// Hero Section
+.hero {
+  max-width: 1200px;
+  margin: 0 auto 8rem;
+  
+  &-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .title {
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 1024px) {
+      font-size: 3rem;
     }
   }
 }
 
-.grid-section {
-  padding: 8rem 2rem;
-  background: white;
-  transform-origin: top;
-
-  .grid-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 4rem;
-
-    h2 {
-      font-family: 'Literata', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: $dark;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      color: rgba($dark, 0.7);
-      font-size: 1.1rem;
-    }
+// Right Column
+.right-column {
+  align-self: end;
+  margin-left: auto;
+  max-width: 400px;
+  
+  .subtitle {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: $gray-color;
+    margin-bottom: 2rem;
   }
+}
 
-  .service-grid {
+// Portfolio Gallery
+.portfolio {
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    .service-card {
-      padding: 2.5rem;
-      border-radius: 20px;
+    gap: 4rem;
+    
+    &-item {
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 15px 30px rgba($dark, 0.08);
-
-      .card-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.4;
-      }
-
-      h3 {
-        font-family: 'Literata', serif;
-        color: $dark;
+      
+      .image-wrapper {
+        overflow: hidden;
+        border-radius: 8px;
         margin-bottom: 1rem;
-        font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+        
+        img {
+          width: 100%;
+          height: 500px;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+          
+          @media (max-width: 768px) {
+            height: 300px;
+          }
+        }
+        
+        &:hover img {
+          transform: scale(1.03);
+        }
       }
-
-      p {
-        color: rgba($dark, 0.7);
-        line-height: 1.6;
-        margin-bottom: 2rem;
-      }
-
-      .reveal-button {
-        background: none;
-        border: 2px solid $gold;
-        color: $gold;
-        padding: 12px 30px;
-        border-radius: 30px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-          background: $gold;
-          color: white;
+      
+      .item-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .number {
+          font-size: 0.9rem;
+          color: $gray-color;
+        }
+        
+        h3 {
+          font-size: 1.4rem;
+          font-weight: 500;
+          
+          @media (max-width: 768px) {
+            font-size: 1.2rem;
+          }
         }
       }
     }
   }
 }
 
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 4rem;
-  padding: 6rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  .feature {
-    text-align: center;
-
-    h4 {
-      font-family: 'Literata', serif;
-      color: $dark;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin-bottom: 1rem;
-    }
-
-    p {
-      color: rgba($dark, 0.7);
-      line-height: 1.6;
+// CTA Button
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: $accent-color;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid $accent-color;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: $accent-color;
+    color: $primary-color;
+    
+    .arrow-icon {
+      transform: rotate(45deg);
     }
   }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    .gradient-title-container {
-      font-size: clamp(3rem, 12vw, 6rem);
-    }
-  }
-
-  .grid-section {
-    padding: 4rem 1rem;
-  }
-
-  .features {
-    padding: 4rem 1rem;
+  
+  .arrow-icon {
+    transition: transform 0.3s ease;
   }
 }

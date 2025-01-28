@@ -1,140 +1,99 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import './main.scss';
+import { FiArrowUpRight } from 'react-icons/fi';
 
-// Массив услуг с заголовками, описаниями и цветами фона
 const services = [
-  { 
-    title: 'Ламинирование Бровей', 
-    desc: 'Идеальная форма на 6-8 недель', 
-    color: '#F5E9E1'
-  },
-  { 
-    title: 'Ламинирование Ресниц', 
-    desc: 'Эффект открытого взгляда', 
-    color: '#E8DED5'
-  },
-  { 
-    title: 'Коррекция', 
-    desc: 'Профессиональная архитектура', 
-    color: '#F2EAE2'
-  },
+  'Наращивание ресниц',
+  'Ламинирование бровей',
+  'Коррекция бровей',
+  'Оформление бровей'
 ];
 
-export default function Main() {
-  // Создаем ссылку для отслеживания прокрутки
-  const ref = useRef(null);
-  // Получаем прогресс прокрутки в пределах целевого элемента (ref)
-  const { scrollYProgress } = useScroll({ target: ref });
-  // Преобразуем прогресс прокрутки в масштаб (от 0.8 до 1.2)
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.2]);
+const portfolioImages = [
+  'image1.jpg',
+  'image2.jpg',
+  'image3.jpg',
+  'image4.jpg'
+];
 
-  // Анимации для каждой буквы
-  const letterAnimations = [
-    { y: [-5, 5, -5] }, // A
-    { y: [5, -5, 5] },  // S
-    { y: [-5, 5, -5] }, // K
-    { y: [5, -5, 5] },  // B
-    { y: [-5, 5, -5] }, // R
-    { y: [5, -5, 5] },  // O
-    { y: [-5, 5, -5] }, // W
-    { y: [5, -5, 5] },  // S
-  ];
-
+const Main = () => {
   return (
-    <div className="container">
-      {/* Hero Section */}
-      <motion.section 
-        className="hero"
-        initial={{ opacity: 0 }} // Начальное состояние секции (прозрачность 0)
-        animate={{ opacity: 1 }} // Конечное состояние секции (прозрачность 1)
-        transition={{ duration: 1.5 }} // Продолжительность анимации
+    <div className="main-page">
+      {/* Header */}
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="header"
       >
-        <motion.div 
-          className="hero-content"
-          whileInView={{ y: 0, opacity: 1 }} // Состояние при попадании в поле зрения
-          initial={{ y: 50, opacity: 0 }} // Начальное состояние (смещение по Y и прозрачность)
-          viewport={{ once: true }} // Анимация срабатывает только один раз при попадании в поле зрения
-        >
-          <div className="gradient-title-container">
-            {Array.from('ASKBROWS').map((letter, index) => (
-              <motion.span 
-                key={index}
-                className="gradient-letter"
-                initial={{ y: 0 }}
-                animate={{ y: letterAnimations[index].y }}
-                transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </div>
-          <p className="subtitle">MOSCOW. 2025</p>
-          {/* Добавляем стрелку для прокрутки */}
-          <motion.div 
-            className="scroll-down-indicator"
-            animate={{ y: [0, 20, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <span>↓</span>
-          </motion.div>
-        </motion.div>
-      </motion.section>
+        <span className="logo">ASKBROWS</span>
+      </motion.header>
 
-      {/* Services Grid */}
-      <motion.section 
-        className="grid-section"
-        ref={ref} // Привязываем реф к секции для отслеживания прокрутки
-        style={{ scale }} // Применяем масштабирование на основе прогресса прокрутки
-      >
-        <div className="grid-header">
-          <h2>Наши услуги</h2>
-          <p>Инновационные техники премиум-класса</p>
-        </div>
-        <div className="service-grid">
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              className="service-card"
-              whileHover={{ scale: 1.05 }} // При наведении увеличиваем масштаб карточки
-              transition={{ type: 'spring', stiffness: 300 }} // Настройка пружинной анимации
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <motion.h1
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="title"
+          >
+            Профессиональный
+            <br />
+            уход за взглядом
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="right-column"
+          >
+            <p className="subtitle">
+              Создаю решения, основанные
+              <br />
+              на реальных потребностях клиентов
+            </p>
+            <motion.a
+              href="#"
+              whileHover={{ x: 5 }}
+              className="cta-button"
             >
-              <div 
-                className="card-bg" 
-                style={{ backgroundColor: service.color }} // Устанавливаем фоновый цвет карточки
-              />
-              <h3>{service.title}</h3>
-              <p>{service.desc}</p>
-              <button className="reveal-button" aria-label={`Подробнее о ${service.title}`}> {/* Добавляем доступность через aria-label */}
-                Подробнее →
-              </button>
+              Запись через Telegram
+              <FiArrowUpRight className="arrow-icon" />
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section className="portfolio">
+        <div className="gallery">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="gallery-item"
+            >
+              <div className="image-wrapper">
+                <img 
+                  src={`/images/${portfolioImages[index]}`} 
+                  alt={service} 
+                />
+              </div>
+              <div className="item-info">
+                <span className="number">0{index + 1}</span>
+                <h3>{service}</h3>
+              </div>
             </motion.div>
           ))}
         </div>
-      </motion.section>
-
-      {/* Features Section */}
-      <section className="features">
-        <motion.div 
-          className="feature"
-          whileInView={{ opacity: 1, x: 0 }} // При попадании в поле зрения плавно появляется
-          initial={{ opacity: 0, x: -50 }} // Начальное состояние (прозрачность и смещение по X)
-          viewport={{ once: true }} // Анимация срабатывает только один раз при попадании в поле зрения
-        >
-          <h4>100% Гипоаллергенно</h4>
-          <p>Используем только сертифицированные материалы</p>
-        </motion.div>
-        
-        <motion.div 
-          className="feature"
-          whileInView={{ opacity: 1, x: 0 }} // При попадании в поле зрения плавно появляется
-          initial={{ opacity: 0, x: 50 }} // Начальное состояние (прозрачность и смещение по X)
-          viewport={{ once: true }} // Анимация срабатывает только один раз при попадании в поле зрения
-        >
-          <h4>5 лет опыта</h4>
-          <p>Профессиональное выполнение процедур</p>
-        </motion.div>
       </section>
     </div>
   );
-}
+};
+
+export default Main;

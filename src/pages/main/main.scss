@@ -1,189 +1,39 @@
-// Variables
-$primary-color: #ffffff;
-$accent-color: #000000;
-$text-color: #111111;
-$gray-color: #666666;
-
-// Base styles
-.main-page {
-  background: $primary-color;
-  color: $accent-color;
-  min-height: 100vh;
-  padding: 2rem;
-  font-family: 'Literata', sans-serif;
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-}
-
-// Header
-.header {
-  margin-bottom: 4rem;
-  
-  .logo {
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: -0.5px;
-  }
-}
-
-// Hero Section
-.hero {
-  max-width: 1200px;
-  margin: 0 auto 8rem;
-  
-  &-content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  .title {
-    font-size: 4rem;
-    line-height: 1;
-    font-weight: 500;
-    letter-spacing: -0.05em;
-    margin-bottom: 2rem;
-    
-    @media (max-width: 1024px) {
-      font-size: 3rem;
-    }
-  }
-}
-
-// Right Column
-.right-column {
-  align-self: end;
-  margin-left: auto;
-  max-width: 400px;
-  
-  .subtitle {
-    font-size: 1.2rem;
-    line-height: 1.4;
-    color: $gray-color;
-    margin-bottom: 2rem;
-  }
-}
-
-// Portfolio Gallery Row
-.gallery-row {
-  display: flex;
-  justify-content: center; // Центрируем блоки по горизонтали
-  overflow-x: auto; // Горизонтальная прокрутка
-  gap: 2rem; // Увеличиваем отступы между блоками
-  padding: 2rem 1rem 50px; // Добавляем отступ снизу в 50px
-
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $accent-color;
-    border-radius: 4px;
-  }
-
-  .gallery-item {
-    flex: 0 0 auto; // Запрещаем растягивание
-    width: 400px; // Увеличиваем ширину блока
-    margin-right: 2rem;
-
-    .image-wrapper {
-      width: 100%;
-      height: 400px; // Увеличиваем высоту изображения
-      overflow: hidden; // Обрезаем изображение, если оно выходит за границы
-      border-radius: 16px; // Увеличиваем радиус скругления
-      margin-bottom: 1rem;
-
-      img {
-        width: 100%;
-        height: 100%; // Изображение занимает всю область блока
-        object-fit: cover; // Растягиваем изображение, чтобы оно полностью помещалось
-        border-radius: 16px; // Увеличиваем радиус скругления
-        transition: transform 0.4s ease;
-
-        &:hover {
-          transform: scale(1.05); // Эффект увеличения при наведении
-        }
-      }
-    }
-
-    .item-info {
-      text-align: center;
-
-      .number {
-        font-size: 1rem; // Увеличиваем размер номера
-        color: $gray-color;
-      }
-
-      h3 {
-        font-size: 1.4rem; // Увеличиваем размер заголовка
-        font-weight: 500;
-        margin-top: 0.5rem;
-      }
-    }
-  }
-}
-
-// CTA Button
-.cta-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-  color: $accent-color;
-  text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  border: 1px solid $accent-color;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: $accent-color;
-    color: $primary-color;
-    
-    .arrow-icon {
-      transform: rotate(45deg);
-      color: $primary-color;
-    }
-  }
-  
-  .arrow-icon {
-    transition: transform 0.3s ease;
-    color: $accent-color;
-  }
-}
-// Footer
-// Footer
-.footer {
-  position: absolute;
-  bottom: 20px; // Отступ снизу
-  left: 50%; // Перемещаем футер к центру по горизонтали
-  transform: translateX(-50%); // Центрируем точно по центру
-  font-size: 0.8rem; // Мелкий шрифт
-  color: $gray-color; // Цвет текста
-
-  .footer-text {
+.main{
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  max-height: 100%;
+  &-block{
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center; // Выравниваем текст по центру
-    gap: 0.2rem; // Расстояние между элементами
-  }
-
-  .footer-link {
-    color: $accent-color; // Цвет ссылки
-    text-decoration: none; // Убираем подчеркивание
-    font-weight: 500; // Жирность текста
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: $gray-color; // Изменяем цвет при наведении
+    justify-content: center;
+    flex-direction: column;
+    &_first{
+      width: 1920px;
+      height: 400px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      &--title{
+        font-size: 20rem;
+        font-family: "Bagel Fat One", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
+    &_second{
+      // margin: 0 50px;
+      width: 1800px;
+      height: 550px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 25px;
     }
   }
 }

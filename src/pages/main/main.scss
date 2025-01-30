@@ -10,7 +10,7 @@ $gray-color: #666666;
   color: $accent-color;
   min-height: 100vh;
   padding: 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Literata', sans-serif;
   
   * {
     margin: 0;
@@ -72,57 +72,60 @@ $gray-color: #666666;
   }
 }
 
-// Portfolio Gallery
-.portfolio {
-  max-width: 1200px;
-  margin: 0 auto;
-  
-  .gallery {
-    display: grid;
-    gap: 4rem;
-    
-    &-item {
-      position: relative;
-      
-      .image-wrapper {
-        overflow: hidden;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        
-        img {
-          width: 100%;
-          height: 500px;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-          
-          @media (max-width: 768px) {
-            height: 300px;
-          }
-        }
-        
-        &:hover img {
-          transform: scale(1.03);
+// Portfolio Gallery Row
+.gallery-row {
+  display: flex;
+  justify-content: center; // Центрируем блоки по горизонтали
+  overflow-x: auto; // Горизонтальная прокрутка
+  gap: 2rem; // Увеличиваем отступы между блоками
+  padding: 2rem 1rem 50px; // Добавляем отступ снизу в 50px
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent-color;
+    border-radius: 4px;
+  }
+
+  .gallery-item {
+    flex: 0 0 auto; // Запрещаем растягивание
+    width: 400px; // Увеличиваем ширину блока
+    margin-right: 2rem;
+
+    .image-wrapper {
+      width: 100%;
+      height: 400px; // Увеличиваем высоту изображения
+      overflow: hidden; // Обрезаем изображение, если оно выходит за границы
+      border-radius: 16px; // Увеличиваем радиус скругления
+      margin-bottom: 1rem;
+
+      img {
+        width: 100%;
+        height: 100%; // Изображение занимает всю область блока
+        object-fit: cover; // Растягиваем изображение, чтобы оно полностью помещалось
+        border-radius: 16px; // Увеличиваем радиус скругления
+        transition: transform 0.4s ease;
+
+        &:hover {
+          transform: scale(1.05); // Эффект увеличения при наведении
         }
       }
-      
-      .item-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        
-        .number {
-          font-size: 0.9rem;
-          color: $gray-color;
-        }
-        
-        h3 {
-          font-size: 1.4rem;
-          font-weight: 500;
-          
-          @media (max-width: 768px) {
-            font-size: 1.2rem;
-          }
-        }
+    }
+
+    .item-info {
+      text-align: center;
+
+      .number {
+        font-size: 1rem; // Увеличиваем размер номера
+        color: $gray-color;
+      }
+
+      h3 {
+        font-size: 1.4rem; // Увеличиваем размер заголовка
+        font-weight: 500;
+        margin-top: 0.5rem;
       }
     }
   }
@@ -147,10 +150,12 @@ $gray-color: #666666;
     
     .arrow-icon {
       transform: rotate(45deg);
+      color: $primary-color;
     }
   }
   
   .arrow-icon {
     transition: transform 0.3s ease;
+    color: $accent-color;
   }
 }

@@ -1,19 +1,19 @@
 import { motion } from 'framer-motion';
 import './main.scss';
 import { FiArrowUpRight } from 'react-icons/fi';
-
+import jena from '../../graphics/img/jena.png'
 const services = [
-  'Наращивание ресниц',
-  'Ламинирование бровей',
-  'Коррекция бровей',
+  'Профессиональный уход',
+  'Гипоаллергенная обработка',
+  'Качественные материалы',
   'Оформление бровей'
 ];
 
 const portfolioImages = [
-  'image1.jpg',
-  'image2.jpg',
-  'image3.jpg',
-  'image4.jpg'
+  jena,
+  jena,
+  jena,
+  jena
 ];
 
 const Main = () => {
@@ -55,7 +55,8 @@ const Main = () => {
               на реальных потребностях клиентов
             </p>
             <motion.a
-              href="#"
+              href="https://t.me/myauchelki"
+              target="_blank"
               whileHover={{ x: 5 }}
               className="cta-button"
             >
@@ -66,30 +67,29 @@ const Main = () => {
         </div>
       </section>
 
-      {/* Portfolio Section */}
       <section className="portfolio">
-        <div className="gallery">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="gallery-item"
-            >
-              <div className="image-wrapper">
-                <img 
-                  src={`/images/${portfolioImages[index]}`} 
-                  alt={service} 
-                />
-              </div>
-              <div className="item-info">
-                <span className="number">0{index + 1}</span>
-                <h3>{service}</h3>
-              </div>
-            </motion.div>
-          ))}
+              <div className="gallery-row">
+              {services.map((service, index) => (
+                <motion.div
+                   key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="gallery-item"
+                  >
+                    <div className="image-wrapper">
+                      <img 
+                        src={portfolioImages[index] || 'placeholder.jpg'} 
+                       alt={service} 
+                      />
+                    </div>
+                    <div className="item-info">
+                      <span className="number">0{index + 1}</span>
+                      <h3>{service}</h3>
+                    </div>
+              </motion.div>
+            ))}
         </div>
       </section>
     </div>

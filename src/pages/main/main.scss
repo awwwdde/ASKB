@@ -159,3 +159,31 @@ $gray-color: #666666;
     color: $accent-color;
   }
 }
+// Footer
+// Footer
+.footer {
+  position: absolute;
+  bottom: 20px; // Отступ снизу
+  left: 50%; // Перемещаем футер к центру по горизонтали
+  transform: translateX(-50%); // Центрируем точно по центру
+  font-size: 0.8rem; // Мелкий шрифт
+  color: $gray-color; // Цвет текста
+
+  .footer-text {
+    display: flex;
+    align-items: center;
+    justify-content: center; // Выравниваем текст по центру
+    gap: 0.2rem; // Расстояние между элементами
+  }
+
+  .footer-link {
+    color: $accent-color; // Цвет ссылки
+    text-decoration: none; // Убираем подчеркивание
+    font-weight: 500; // Жирность текста
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $gray-color; // Изменяем цвет при наведении
+    }
+  }
+}

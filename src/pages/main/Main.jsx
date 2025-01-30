@@ -92,6 +92,20 @@ const Main = () => {
             ))}
         </div>
       </section>
+      <footer className="footer">
+        <p className="footer-text">
+          made by{' '}
+        <a
+        href="https://github.com/awwwdde"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="footer-link"
+        >
+        awwwdde
+        </a>{' '}
+        with ❤️
+        </p>
+      </footer>
     </div>
   );
 };
